@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="http://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <link rel="stylesheet" href="http://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script>
+    var socket = io();
+    var message = document.getElementById('message');
+    var form = document.forms.myform;
+    $(function(){
+      $('#button').on('click', function(e){
+        alert("");
+        console.log("aaaa");
+      })
+    });
+
+    form.btn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      socket.emit('chat', form.text.value);
+      form.text.value = '';
+    })
+  </script>
+
+  <title>タイトル</title>
+</head>
+
+<body>
+  <h1>Hello World</h1>
+  <button class="button" id="button">デフォルト</button>
+  <button class="button button-outline">アウトライン</button>
+  <button class="button button-clear">クリア</button>
+  <div class="container">
+      <form name="myform">
+          <input name="text" type="text">
+          <button name="btn">送信</button>
+      </form>
+      <hr>
+      <ul id="message"></ul>
+  </div>
+</body>
+</html>

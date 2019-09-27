@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timer</title>
+
+  <!-- javascript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script>
+    // countUP関数
+    var count_sec = 1;
+    function countUp() {
+      // jquery使ってみた。（DOMを読み込み終わった時点で実行）
+      $(function(){
+        // カウント表示
+        $('#msg').html(count_sec);
+        count_sec++;
+      });
+    }
+
+    // ボタン押下関数
+    var isStop = true;
+    var timeId;
+    function startOrStopCount() {
+      if (isStop){
+        // stop状態の場合、スタートさせる。
+        timeId = setInterval("countUp()",1000);
+        // alert("タイマーをスタートします。");
+        document.getElementById("test_p").innerHTML = "タイマー進行中...";
+        document.getElementById("start_button").value = "STOP";
+        isStop = false;
+      } else {
+        clearInterval(timeId);
+        // alert("タイマーをストップします。");
+        document.getElementById("test_p").innerHTML = "タイマーをストップしました";
+        document.getElementById("start_button").value = "START";
+        isStop = true;
+      }
+    }
+
+  </script>
+</head>
+
+<!--
+  HTML
+-->
+<body>
+  <div>
+    <h1>Timerこんにちは</h1>
+    <h1 id="msg">0</h1>
+    <input type="button" id="start_button" value="START" onclick="startOrStopCount()">
+    <p id="test_p">STARTを押してね</p>
+  </div>
+</body>
+</html>
